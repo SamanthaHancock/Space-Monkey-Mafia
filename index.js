@@ -16,7 +16,7 @@ var path = require('path');
 app.use('/public', express.static(__dirname + '/public'));
 
 // Sets the server to listen on port 8080.
-http.listen(8080, function(){
+http.listen(9090, function(){
   console.log('listening on *:8080');
 });
 
