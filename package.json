@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Book off time n shit",
   "dependencies": {
-    "express": "^4.10.2",
-    "mysql": "^2.5.4"
+    "express": "^4.10.2"
   }
 }
