@@ -1,6 +1,8 @@
 #inputDetails{
   height: 3%;
-  width: 10%;
+  width: 8%;
+  position: absolute;
+  margin-left: 14%;
 }
 
 .boxes {
@@ -33,4 +35,11 @@ form {
 
 body {
   font-family: Tahoma;
+}
+
+img {
+  height: 50px;
+  width: 100px;
+  margin-left: 75%;
+  display: inline;
 }
