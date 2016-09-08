@@ -17,7 +17,7 @@ app.use('/public', express.static(__dirname + '/public'));
 
 // Sets the server to listen on port 8080.
 http.listen(9090, function(){
-  console.log('listening on *:8080');
+  console.log('listening on *:9090');
 });
 
 // Gets the html file to run.
