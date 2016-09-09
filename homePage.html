@@ -3,20 +3,104 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Datepicker - Default functionality</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="public/css/homePage.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
   <script>
   $( function() {
     $( "#datepicker" ).datepicker();
-  } );
+  });
+  $(document).ready(function() {
+    $('#confirmAttendance').click(function(){
+      var time = $("#timeOff").val();
+      var reason = $("#reason").val();
+      var date = $('#datepicker').val();
+        //pass time reason and date through to the database...
+    })
+  })
+
+
+  function changePassword() {
+    document.getElementById("passwordDiv").style.display = "block";
+  }
+
+  function cancelPassword() {
+    document.getElementById("passwordDiv").style.display = "none";
+    document.getElementById('newPass').value = "";
+    document.getElementById('confPass').value = "";
+  }
+
+  function passwordChanged() {
+    var password1 = document.getElementById('newPass').value;
+    var password2 = document.getElementById('confPass').value;
+    if (password1 == password2) {
+      //pass password 1 through to the database
+    } else {
+      alert('Those passwords do not match please try agian');
+      document.getElementById('newPass').value = "";
+      document.getElementById('confPass').value = "";
+    }
+  }
+
+function toggleOverlay(){
+	var overlay = document.getElementById('overlay');
+  var profile = document.getElementById('profileDiv');
+	overlay.style.opacity = .8;
+	if (overlay.style.display == "block"){
+		overlay.style.display = "none";
+		profile.style.display = "none";
+    $('#newPass').val('');
+    $('#confPass').val('');
+    $('#emailInput').val('');
+    $('#UsernameInput').val('');
+    cancelPassword();
+	} else {
+		overlay.style.display = "block";
+		profile.style.display = "block";
+	}
+}
   </script>
 </head>
 <body>
 
-<p>Date: <input type="text" id="datepicker"></p>
+<div id="overlay" style="display: none; width:100%; height:100%; z-index: 10;" onmousedown="toggleOverlay()"></div>
+<div id="bookTime">
+  <input type="button" value="Profile" onclick="toggleOverlay()"id="presentProfile">
+  <h1>Enter your details here</h1>
+  <p>Date: <input type="text" id="datepicker"></p>
+  <p>Reason: <input type="text" list="reasons" id="reason" placeholder="Please type the reason you will not be attending"><p>
+  <p>Length: <input type="text" list="times" id="timeOff" placeholder="Please input the amount of time that you intent to be away for"></p>
+  <input type="button" onclick="confirmAttendance()" value="Confirm" id="confirmAttendance">
+  <datalist id="reasons">
+    <option>Holiday</option>
+    <option>Ill</option>
+    <option>Family issues</option>
+    <option>Other plans that cannot be rearanged</option>
+  </datalist>
+  <datalist id="times">
+    <option>1 Week</option>
+    <option>2 Weeks</option>
+    <option>3 Weeks</option>
+    <option>4 Weeks</option>
+    <option>5 Weeks</option>
+    <option>6 Weeks</option>
+    <option>7 Weeks</option>
+  </datalist>
+</div>
+<div id="profileDiv" class="tablemodal" style="display: none; z-index: 1000; padding:0%">
+    <h1 class="close">Profile <span class="close" id="close" onclick="toggleOverlay()">&times;</span></h1>
+  <p>Change Email: <input type="text" placeholder="Please enter your new username here" id="emailInput"><input id="changeEmail" type="button" value="Enter new email"></p>
+  <p>Change Username: <input type="text" placeholder="Please enter your new email here" id="UsernameInput"><input id="changeUser" type="button" value="Enter new username"></p>
+  <p>Change Password: <input value="Click Here" onclick="changePassword()" type="button" id="passwordInput"></p>
 
-
+<div id="passwordDiv" style="display: none;">
+  <p>New Password <input type="password" placeholder="Please enter your new password here" id="newPass"></p>
+  <p>Confirm Password <input type="password" placeholder="Please repeat your new password here" id="confPass"></p>
+  <input value="Enter" onclick="passwordChanged()" type="button" id="changePassword">
+  <input value="Cancel" onclick="cancelPassword()" type="button" id="cancelPassword">
+</div>
+</div>
 </body>
 </html>
